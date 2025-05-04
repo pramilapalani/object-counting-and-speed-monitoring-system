@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+
+# Flask instance folder and logs
+instance/
+*.log
+
+# Uploaded media
+app/static/uploads/
+
+# Logs and stats
+logs/
+*.csv
+
+# Environment variables
+.env
+
+# IDE configs
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+
+# YOLO weights (if not committing)
+*.pt

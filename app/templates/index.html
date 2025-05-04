@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html>
+<head><title>Object Tracking</title></head>
+<body>
+    <h2>Upload Video for Object Detection</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="video">
+        <input type="submit" value="Upload">
+    </form>
+    {% if video_uploaded %}
+    <h3>Live Stream</h3>
+    <img src="{{ url_for('video_feed') }}" width="800">
+    {% endif %}
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Intelligent Object Counter</title>
+</head>
+<body>
+    <h1>Upload Video for Detection</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="video" required>
+        <input type="submit" value="Start Processing">
+    </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Object Counter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Intelligent Object Counter</h1>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Upload a Video for Object Detection and Analysis</h2>
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="video" accept="video/*" required>
+                <input type="submit" value="Start Processing">
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Powered by YOLOv8 | Object Detection & Speed Monitoring</p>
+    </div>
+
+</body>
+</html>
+
