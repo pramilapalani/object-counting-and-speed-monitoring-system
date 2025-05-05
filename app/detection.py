@@ -40,7 +40,7 @@ def process_video(video_path):
     global log_data
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
-    
+
     while cap.isOpened():
         success, frame = cap.read()
         if not success:
@@ -53,23 +53,44 @@ def process_video(video_path):
         if results.boxes.id is not None:
             for box, track_id in zip(results.boxes.xyxy, results.boxes.id):
                 id = int(track_id.item())
-                cx = int((box[0] + box[2]) / 2)
-                cy = int((box[1] + box[3]) / 2)
+                x1, y1, x2, y2 = map(int, box[:4])
+                cx = int((x1 + x2) / 2)
+                cy = int((y1 + y2) / 2)
+                height = y2 - y1
 
                 unique_ids.add(id)
                 estimate_speed(id, (cx, cy), fps)
                 count_in_region(id, (cx, cy))
 
+                speed = speeds.get(id, 0)
                 log_data.append({
                     "timestamp": datetime.now(),
                     "frame_id": int(cap.get(cv2.CAP_PROP_POS_FRAMES)),
                     "object_id": id,
                     "region": [r for r in REGIONS if id in region_counts[r]],
-                    "speed_kmph": speeds.get(id, 0)
+                    "speed_kmph": speed
                 })
 
-                cv2.putText(annotated_frame, f"ID:{id} {speeds.get(id, 0):.1f} km/h", (cx, cy - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 255), 1)
+                # Highlighted speed display
+                speed_text = f"{speed:.1f} km/h"
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                font_scale = 0.6
+                font_thickness = 2
+                (text_width, text_height), _ = cv2.getTextSize(speed_text, font, font_scale, font_thickness)
+                text_x = int(cx - text_width / 2)
+                text_y = int(cy + height / 2 + 25)  # Below bounding box
+
+                # Draw background rectangle
+                cv2.rectangle(annotated_frame,
+                              (text_x - 5, text_y - text_height - 5),
+                              (text_x + text_width + 5, text_y + 5),
+                              (0, 0, 0),  # Black background
+                              -1)  # Filled rectangle
+
+                # Draw speed text
+                cv2.putText(annotated_frame, speed_text,
+                            (text_x, text_y),
+                            font, font_scale, (0, 255, 0), font_thickness, cv2.LINE_AA)
 
         cv2.putText(annotated_frame, f"Total Objects: {len(unique_ids)}", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
