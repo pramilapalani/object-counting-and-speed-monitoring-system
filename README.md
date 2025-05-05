@@ -88,6 +88,9 @@ http://127.0.0.1:5000/
 - Edit the `app/templates/index.html` file to customize the web interface.
 - Modify `detection.py` to adjust object detection, tracking, and speed estimation logic.
 
+### 📽️ Demo
+[Click to watch the demo video](app/static/output/output-demo.mp4)
+
 ## 📝 License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
