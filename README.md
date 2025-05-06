@@ -34,8 +34,7 @@ A real-time surveillance analytics tool to detect, track, count, and estimate th
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/pramilapalani/object-counting-and-speed-monitoring-system
-.git
+git clone https://github.com/pramilapalani/object-counting-and-speed-monitoring-system.git
 cd object-counting-and-speed-monitoring-system
 ```
 
