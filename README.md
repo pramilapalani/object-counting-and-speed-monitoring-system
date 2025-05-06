@@ -34,8 +34,9 @@ A real-time surveillance analytics tool to detect, track, count, and estimate th
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/intelligent-object-counter.git
-cd intelligent-object-counter
+git clone https://github.com/pramilapalani/object-counting-and-speed-monitoring-system
+.git
+cd object-counting-and-speed-monitoring-system
 ```
 
 ### 2. Create a Virtual Environment (Optional)
